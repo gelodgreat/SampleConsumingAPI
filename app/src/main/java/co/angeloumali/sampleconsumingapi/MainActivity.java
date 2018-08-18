@@ -1,15 +1,41 @@
 package co.angeloumali.sampleconsumingapi;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import co.angeloumali.sampleconsumingapi.api_handler.sampleFetch;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
+import android.widget.EditText;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import co.angeloumali.sampleconsumingapi.api_handler.SampleFetch;
+import co.angeloumali.sampleconsumingapi.api_handler.SamplePost;
 
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.base_name)
+    EditText base_name;
+    @BindView(R.id.btn_submit)
+    Button btn_submit;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sampleFetch.getBases();
+        ButterKnife.bind(this);
+
+        init();
+    }
+
+    private void init() {
+        SampleFetch.getBases();
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String base = base_name.getText().toString();
+                SamplePost.sendPost(base);
+            }
+        });
     }
 }

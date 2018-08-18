@@ -12,7 +12,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class sampleFetch {
+public class SampleFetch {
 
     private static Retrofit retrofit;
 
@@ -38,7 +38,7 @@ public class sampleFetch {
 
             @Override
             public void onFailure(Call<List<Base>> call, Throwable t) {
-                Log.d("ERROR", t.getMessage());
+                Log.e("ERROR", t.getMessage());
             }
         });
     }
