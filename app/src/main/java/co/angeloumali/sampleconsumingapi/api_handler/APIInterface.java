@@ -1,13 +1,15 @@
 package co.angeloumali.sampleconsumingapi.api_handler;
 
+import com.google.gson.JsonObject;
+
 import java.util.List;
 
 import co.angeloumali.sampleconsumingapi.model.Base;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface APIInterface {
@@ -17,6 +19,6 @@ public interface APIInterface {
     Call<List<Base>> getBase();
 
     @POST("post_test")
-    @FormUrlEncoded
-    Call<Base> submitBase(@Field("base") String base);
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    Call<ResponseBody> submitBase(@Body JsonObject jsonObject);
 }

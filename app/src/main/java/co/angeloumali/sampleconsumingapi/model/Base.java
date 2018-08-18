@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Base {
 
+    public Base(String base) {
+        this.base = base;
+    }
+
     @SerializedName("base")
     @Expose
     private String base;
